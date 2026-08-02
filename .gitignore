@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+
+# Kavi local state (if a dev points state dirs into the repo)
+.kavi/
+*.log
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+
