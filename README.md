@@ -10,6 +10,10 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Textual](https://img.shields.io/badge/UI-Textual-green.svg)](https://textual.textualize.io/)
 
+<br/>
+
+![Kavi Code TUI Demo](assets/demo.jpg)
+
 </div>
 
 ---
