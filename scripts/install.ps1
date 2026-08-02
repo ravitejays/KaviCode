@@ -7,8 +7,11 @@
   Prefers pipx (isolated, puts `kavi` on PATH). Falls back to a local .venv.
 #>
 
-$ErrorActionPreference = 'Stop'
-$Root = Split-Path -Parent $PSScriptRoot
+$RepoUrl = "git+https://github.com/bahumukh/KaviCode.git"
+$Target = $RepoUrl
+if ($PSScriptRoot -and (Test-Path (Join-Path (Split-Path -Parent $PSScriptRoot) 'pyproject.toml'))) {
+    $Target = Split-Path -Parent $PSScriptRoot
+}
 $MinMajor = 3
 $MinMinor = 11
 
@@ -41,9 +44,9 @@ Say "Using $ver"
 # --- preferred path: pipx -----------------------------------------------------
 if (Get-Command pipx -ErrorAction SilentlyContinue) {
     Say "Installing Kavi with pipx (isolated environment)..."
-    pipx install --force "$Root"
+    pipx install --force "$Target"
     Say "Installing Playwright browsers..."
-    pipx run --spec "$Root" playwright install chromium
+    pipx run --spec "$Target" playwright install chromium
     pipx ensurepath | Out-Null
     Say "Done. Open a NEW terminal and run:  kavi"
     exit 0

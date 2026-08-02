@@ -38,19 +38,24 @@
 ### Prerequisites
 - **Python 3.11+** installed on your system.
 
-### One-Command Installation
+### One-Command Remote Installation
 
-**macOS / Linux**
+**macOS / Linux (Bash)**
 ```bash
-./scripts/install.sh
+curl -fsSL https://raw.githubusercontent.com/bahumukh/KaviCode/main/scripts/install.sh | bash
 ```
 
 **Windows (PowerShell)**
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
+powershell -ExecutionPolicy Bypass -Command "iwr -useb https://raw.githubusercontent.com/bahumukh/KaviCode/main/scripts/install.ps1 | iex"
 ```
 
-*The installer configures an isolated [`pipx`](https://pipx.pypa.io/) installation (putting `kavi` on your PATH) or sets up a local `.venv` automatically.*
+**Via `pipx` (Any Platform)**
+```bash
+pipx install git+https://github.com/bahumukh/KaviCode.git
+```
+
+*The installer configures an isolated [`pipx`](https://pipx.pypa.io/) installation (putting `kavi` directly on your PATH) or sets up a local `.venv` automatically.*
 
 ### Manual / Development Install
 

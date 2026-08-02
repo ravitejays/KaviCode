@@ -7,7 +7,18 @@
 # Prefers pipx (isolated, adds `kavi` to PATH). Falls back to a local .venv.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_URL="git+https://github.com/bahumukh/KaviCode.git"
+TARGET=""
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  if [ -f "$DIR/pyproject.toml" ]; then
+    TARGET="$DIR"
+  fi
+fi
+if [ -z "$TARGET" ]; then
+  TARGET="$REPO_URL"
+fi
+
 MIN_MAJOR=3
 MIN_MINOR=11
 
@@ -30,9 +41,9 @@ say "Using $("$PY" --version 2>&1) at $(command -v "$PY")"
 # --- preferred path: pipx -----------------------------------------------------
 if command -v pipx >/dev/null 2>&1; then
   say "Installing Kavi with pipx (isolated environment)..."
-  pipx install --force "$ROOT"
+  pipx install --force "$TARGET"
   say "Installing Playwright browsers..."
-  pipx run --spec "$ROOT" playwright install chromium
+  pipx run --spec "$TARGET" playwright install chromium
   pipx ensurepath >/dev/null 2>&1 || true
   say "Done. Open a new terminal and run:  kavi"
   exit 0
